@@ -1,0 +1,62 @@
+    ADDI X0, XZR, #20
+    BL fib
+    PRNT X0
+    PRNL
+    ADDI X0, XZR, #0
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #1
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #2
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #3
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #4
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #5
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #6
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #7
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #8
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #9
+    BL fib
+    PRNT X0
+    ADDI X0, XZR, #10
+    BL fib
+    PRNT X0
+    B end
+  fib:
+    CBZ X0, done
+    SUBI X9, X0, #1
+    CBNZ X9, body
+  done:
+    BR LR
+  body:
+    SUBI SP, SP, #24
+    STUR X20, [SP, #0]
+    STUR X19, [SP, #8]
+    STUR LR, [SP, #16]
+    ADD X19, X0, XZR
+    SUBI X0, X19, #1
+    BL fib
+    ADD X20, X0, XZR
+    SUBI X0, X19, #2
+    BL fib
+    ADD X0, X0, X20
+    LDUR X20, [SP, #0]
+    LDUR X19, [SP, #8]
+    LDUR LR, [SP, #16]
+    ADDI SP, SP, #24
+    BR LR
+end:

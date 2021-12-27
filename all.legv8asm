@@ -1,0 +1,81 @@
+label:
+ADD X1, X2, X3
+SUB X1, X2, X3
+ADDI X1, X2, #20
+SUBI X1, X2, #20
+SUBS X1, X2, X3
+SUBIS X1, X2, #20
+MUL X1, X2, X3
+LDUR X1, [X2, #40]
+STUR X1, [X2, #40]
+AND X1, X2, X3
+ORR X1, X2, X3
+EOR X1, X2, X3
+ANDI X1, X2, #20
+ORRI X1, X2, #20
+EORI X1, X2, #20
+LSL X1, X2, #10
+LSR X1, X2, #10
+CBZ X1, end
+B.EQ label
+B.NE label
+B.HS label
+B.LO label
+B.MI label
+B.PL l2
+B.VS label
+B.VC label
+B.HI label
+B.LS label
+B.GE label
+B.LT label
+B.GT label
+B.LE label
+B label
+BL label
+BR LR
+PRNT X10
+PRNL
+DUMP
+HALT
+l2:
+ADD X1, X2, X3
+SUB X1, X2, X3
+ADDI X1, X2, #20
+SUBI X1, X2, #20
+SUBS X1, X2, X3
+SUBIS X1, X2, #20
+MUL X1, X2, X3
+LDUR X1, [X2, #40]
+STUR X1, [X2, #40]
+AND X1, X2, X3
+ORR X1, X2, X3
+EOR X1, X2, X3
+ANDI X1, X2, #20
+ORRI X1, X2, #20
+EORI X1, X2, #20
+LSL X1, X2, #10
+LSR X1, X2, #10
+CBZ X1, label
+B.EQ l2
+B.NE l2
+B.HS l2
+B.LO l2
+B.MI end
+B.PL end
+B.VS end
+B.VC end
+B.HI end
+B.LS end
+B.GE label
+B.LT label
+B.GT label
+B.LE label
+B label
+BL label
+BR LR
+PRNT X10
+PRNL
+DUMP
+HALT
+end:

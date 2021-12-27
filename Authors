@@ -1,0 +1,12 @@
+Authors
+Jacob Gorton - jagorton
+Michael Moore - mamoore
+Polina Semenova - semenova
+Kateryna Mykhaylova - Kateryna
+
+
+to run the program, cd to inside this folder, then type the following commands
+sh build.sh
+sh run.sh /absolute/path/to/filename
+
+after this the decoded assembly instructions will be printed to the console

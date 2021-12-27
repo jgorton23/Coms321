@@ -1,0 +1,76 @@
+    ADDI X19, XZR, #0
+    ADDI X20, XZR, #500
+    ADDI X0, X19, #0          
+    ADDI X1, X20, #0          
+    BL fill                   
+    ADDI X0, X19, #0          
+    ADDI X1, X20, #0          
+    BL selectionSort          
+    DUMP                      
+    B end
+fill:
+    ADDI X9, XZR, #0      
+    ADDI X13, X0, #0      
+fillNext:                     
+    SUB X10, X1, X9       
+    STUR X10, [X0, #0]    
+    ADDI X9, X9, #1       
+    ADDI X0, X0, #8       
+    LSL X11, X1, #3       
+    ADD X11, X11, X13     
+    SUB X12, X11, X0      
+    CBNZ X12, fillNext    
+    BR LR                 
+findSmallest:
+    ADDI X12, X2, #0
+    LSL X9, X2, #3
+    ADD X9, X9, X0
+    LDUR X15, [X9, #0]
+next:
+    ADDI X12, X12, #1
+    ADDI X9, X9, #8
+    LSL X10, X1, #3
+    ADD X10, X10, X0
+    SUB X11, X10, X9
+    CBZ X11, done
+    LDUR X14, [X9, #0]
+    SUBS X13, X14, X15
+    B.GE next
+    ADD X2, X12, XZR
+    ADD X15, X14, XZR
+    B next
+done:
+    ADD X0, X2, XZR       
+    BR LR                 
+swap:
+    LSL X0, X0, #3
+    ADD X0, X0, X2
+    LDUR X9, [X0, #0]
+    LSL X1, X1, #3
+    ADD X1, X1, X2
+    LDUR X10, [X1, #0]
+    STUR X9, [X1, #0] 
+    STUR X10, [X0, #0]
+    BR LR
+selectionSort:
+    ADDI X2, XZR, #0
+body:
+    SUBI SP, SP, #32
+    STUR X0, [SP, #0]
+    STUR X1, [SP, #8]
+    STUR X2, [SP, #16]
+    STUR LR, [SP, #24]
+    BL findSmallest
+    LDUR X1, [SP, #16]
+    LDUR X2, [SP, #0]
+    BL swap
+    LDUR X0, [SP, #0]
+    LDUR X1, [SP, #8]
+    LDUR X2, [SP, #16]
+    LDUR LR, [SP, #24]
+    ADDI SP, SP, #32
+    ADDI X2, X2, #1
+    SUB X9, X1, X2
+    CBNZ X9, body
+    BR LR
+end:

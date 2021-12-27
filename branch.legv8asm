@@ -1,0 +1,15 @@
+start:
+B start
+B end
+B start
+B end
+B middle
+middle:
+B middle
+B end
+B start
+B end
+B start
+B middle
+B end
+end:
